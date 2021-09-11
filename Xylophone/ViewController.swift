@@ -14,12 +14,25 @@ class ViewController: UIViewController {
     var player: AVAudioPlayer!
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
     }
 
     @IBAction func keyPressed(_ sender: UIButton) {
+ 
+        playSound(senderLetter: sender.currentTitle!)
+        
+        // Reduces the sender's opacity (the button that got pressed) to half
+        sender.alpha = 0.5
 
-          playSound(senderLetter: sender.currentTitle!)
+        // Do stuff 0.12 seconds later
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+
+            // Bring's sender's opacity back up to fully opaque.
+            sender.alpha = 1
+                
+            }
         
     }
     
@@ -31,6 +44,7 @@ class ViewController: UIViewController {
         player.play()
                 
     }
+    
 }
 
 
